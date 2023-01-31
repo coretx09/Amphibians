@@ -19,6 +19,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -39,10 +40,17 @@ class AmphibianListFragment : Fragment() {
         viewModel.getAmphibianList()
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        binding.recyclerView.adapter = AmphibianListAdapter(AmphibianListener { amphibian ->
+        binding.recyclerView.adapter = AmphibianListAdapter(AmphibianListener {clickEvent ,amphibian ->
             viewModel.onAmphibianClicked(amphibian)
-            findNavController()
-                .navigate(R.id.action_amphibianListFragment_to_amphibianDetailFragment)
+            when(clickEvent){
+                ClickEvent.NAVIGATE ->
+                    findNavController()
+                        .navigate(R.id.action_amphibianListFragment_to_amphibianDetailFragment)
+                ClickEvent.TOAST -> {
+                    Toast.makeText(context, "GOOD JOB", Toast.LENGTH_SHORT).show()
+                }
+            }
+
         })
 
         // Inflate the layout for this fragment

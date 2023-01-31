@@ -24,6 +24,9 @@
         <variable
             name="clickListener"
             type="com.example.amphibians.ui.AmphibianListener" />
+        <variable
+            name="clickEvent"
+            type="com.example.amphibians.ui.ClickEvent" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -31,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:onClick="@{() -> clickListener.onClick(amphibian)}"
+        android:onClick="@{() -> clickListener.onClick(clickEvent.NAVIGATE ,amphibian)}"
         app:cardElevation="4dp"
         app:cardCornerRadius="4dp">
 
@@ -45,6 +48,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="18sp"
             android:text="@{amphibian.name}"
+            android:onClick="@{() -> clickListener.onClick(clickEvent.TOAST, amphibian)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Frog" />

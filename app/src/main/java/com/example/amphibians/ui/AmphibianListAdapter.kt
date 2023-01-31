@@ -65,6 +65,7 @@ class AmphibianListAdapter(val clickListener: AmphibianListener) :
     }
 }
 
-class AmphibianListener(val clickListener: (amphibian: Amphibian) -> Unit) {
-    fun onClick(amphibian: Amphibian) = clickListener(amphibian)
+class AmphibianListener(val clickListener: (clickEvent:ClickEvent ,amphibian: Amphibian) -> Unit) {
+    fun onClick(clickEvent:ClickEvent,amphibian: Amphibian) = clickListener(clickEvent,amphibian)
 }
+enum class ClickEvent{NAVIGATE, TOAST}
